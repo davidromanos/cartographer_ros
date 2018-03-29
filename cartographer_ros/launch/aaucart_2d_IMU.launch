@@ -16,17 +16,18 @@
 
 <launch>
   <param name="robot_description"
-    textfile="$(find cartographer_ros)/urdf/backpack_2d.urdf" />
+    textfile="$(find cartographer_ros)/urdf/aaucart_2d_IMU.urdf" />
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher"
-    type="robot_state_publisher" />
+  <!--node name="robot_state_publisher" pkg="robot_state_publisher"
+    type="robot_state_publisher" /-->
 
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find cartographer_ros)/configuration_files
-          -configuration_basename aaucart_2d_noIMU.lua"
+          -configuration_basename aaucart_2d_IMU.lua"
       output="screen">
     <!--remap from="echoes" to="horizontal_laser_2d" /-->
+    <remap from="scan" to="scan_1" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
