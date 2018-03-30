@@ -23,7 +23,7 @@ options = {
   published_frame = "base_link",
   odom_frame = "odom",
   provide_odom_frame = true,
-  publish_frame_projected_to_2d = false,
+  publish_frame_projected_to_2d = true,
   use_odometry = false,
   use_nav_sat = false,
   use_landmarks = false,
@@ -43,18 +43,18 @@ options = {
 }
 
 MAP_BUILDER.use_trajectory_builder_2d = true
-TRAJECTORY_BUILDER_2D.use_imu_data = true
+
 -- TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 10
 
 
--- TRAJECTORY_BUILDER_2D = {
---   use_imu_data = true,
---   min_range = 0.,
---   max_range = 30.,
+TRAJECTORY_BUILDER_2D = {
+  use_imu_data = true,
+  min_range = 0.,
+  max_range = 30.,
 --   min_z = -0.8,
 --   max_z = 2.,
 --   missing_data_ray_length = 5.,
---   num_accumulated_range_data = 50,
+  num_accumulated_range_data = 1.,
 --   voxel_filter_size = 0.025,
 
 --   adaptive_voxel_filter = {
@@ -77,16 +77,16 @@ TRAJECTORY_BUILDER_2D.use_imu_data = true
 --     rotation_delta_cost_weight = 1e-1,
 --   },
 
---   ceres_scan_matcher = {
+  ceres_scan_matcher = {
 --     occupied_space_weight = 1.,
---     translation_weight = 10.,
---     rotation_weight = 40.,
+    translation_weight = 1e3,
+    rotation_weight = 1e3,
 --     ceres_solver_options = {
 --       use_nonmonotonic_steps = false,
 --       max_num_iterations = 20,
 --       num_threads = 1,
 --     },
---   },
+  },
 
 --   motion_filter = {
 --     max_time_seconds = 5.,
@@ -105,7 +105,7 @@ TRAJECTORY_BUILDER_2D.use_imu_data = true
 --       miss_probability = 0.49,
 --     },
 --   },
--- }
+}
 
 -- POSE_GRAPH = {
 --   optimize_every_n_nodes = 90,
