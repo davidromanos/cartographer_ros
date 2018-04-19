@@ -14,13 +14,13 @@
   limitations under the License.
 -->
 
-<robot name="cartographer_aaucart_2d">
+<!--robot name="cartographer_aaucart_2d">
   <material name="orange">
     <color rgba="1.0 0.5 0.2 1" />
   </material>
   <material name="gray">
     <color rgba="0.2 0.2 0.2 1" />
-  </material>
+  </material>ls
 
   <link name="horizontal_laser_link">
     <visual>
@@ -47,12 +47,74 @@
   <joint name="horizontal_laser_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="horizontal_laser_link" />
-    <origin xyz="2.04 0 0" />
+    <origin xyz="1.714 0 -0.154" />
   </joint>
 
   <joint name="tilted_laser_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="tilted_laser_link" />
-    <origin rpy="3.141593 0.31 0" xyz="1.78 0 1.15" />
+    <origin rpy="3.141593 0.31 0" xyz="1.474 0 0.948" />
+  </joint>
+</robo-->
+
+<!-- configuration with IMU-->
+
+<robot name="cartographer_aaucart_2d">
+  <material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+  </material>
+  <material name="gray">
+    <color rgba="0.2 0.2 0.2 1" />
+  </material>
+
+  <link name="imu_link">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="0.06 0.04 0.02" />
+      </geometry>
+      <material name="orange" />
+    </visual>
+  </link>
+
+  <link name="horizontal_laser_link">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.05" radius="0.03" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <link name="tilted_laser_link">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.05" radius="0.03" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <link name="base_link" />
+
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="imu_link" />
+    <origin xyz="0 0 0" />
+  </joint>
+
+  <joint name="horizontal_laser_link_joint" type="fixed">
+    <parent link="imu_link" />
+    <child link="horizontal_laser_link" />
+    <origin xyz="1.714 0 -0.154" />
+  </joint>
+
+  <joint name="tilted_laser_link_joint" type="fixed">
+    <parent link="imu_link" />
+    <child link="tilted_laser_link" />
+    <!--origin rpy="3.141593 0.31 -0.065" xyz="1.78 0 1.15" /-->
+    <origin rpy="3.141593 0.31 0" xyz="1.474 0 0.948" />
   </joint>
 </robot>

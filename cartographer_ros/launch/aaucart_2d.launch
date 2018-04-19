@@ -27,7 +27,7 @@
           -configuration_basename aaucart_2d.lua"
       output="screen">
     <!--remap from="echoes" to="horizontal_laser_2d" /-->
-    <!--remap from="scan" to="scan_1"/-->
+    <remap from="scan" to="scan_1"/>
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
