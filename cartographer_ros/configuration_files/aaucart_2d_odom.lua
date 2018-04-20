@@ -48,9 +48,11 @@ MAP_BUILDER.use_trajectory_builder_2d = true
 
 TRAJECTORY_BUILDER_2D.use_imu_data = true
 TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 5
+TRAJECTORY_BUILDER_2D.min_range = 0.5
+TRAJECTORY_BUILDER_2D.max_range = 40
 
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 20
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 20
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 1
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 30
 
 TRAJECTORY_BUILDER_2D.submaps.num_range_data = 15
 TRAJECTORY_BUILDER_2D.submaps.resolution = 0.08
@@ -60,13 +62,13 @@ TRAJECTORY_BUILDER_2D.submaps.resolution = 0.08
 
 -- POSE_GRAPH.optimize_every_n_nodes = 10
 
---POSE_GRAPH.constraint_builder.ceres_scan_matcher.translation_weight = 10 
---POSE_GRAPH.constraint_builder.ceres_scan_matcher.rotation_weight = 1
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.translation_weight = 1
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.rotation_weight = 1e2
 
-POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 10
+POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 50
 POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 10
-POSE_GRAPH.optimization_problem.odometry_translation_weight = 6e4
-POSE_GRAPH.optimization_problem.odometry_rotation_weight = 4e4
+POSE_GRAPH.optimization_problem.odometry_translation_weight = 2e3
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 4e3
 
 
 return options
